@@ -17,7 +17,7 @@
  *	2016-07-13: Initial Release
  */
 definition(
-	name: "AsusWRT Wifi Presence",
+	name: "Router Wifi Presence",
 	namespace: "chadly",
 	author: "Chad Lee",
 	description: "Triggers Wifi Presence Status when HTTP GET Request is recieved",
