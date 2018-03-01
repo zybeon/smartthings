@@ -26,45 +26,45 @@ esac
 
 if [ "$Rodney" = Home ]
 then
-	if [ ! -f /jffs/scripts/users/chad ]
+	if [ ! -f /opt/scripts/users/rodney ]
 	then
-		touch /jffs/scripts/users/rodney
+		touch /opt/scripts/users/rodney
 		curl -H "Authorization: Bearer <ACCESS_TOKEN>" -X POST "https://<BASE_URL>/api/smartapps/installations/<APP_ID>/home"
 	fi
 else
-	if [ -f /jffs/scripts/users/chad ]
+	if [ -f /opt/scripts/users/rodney ]
 	then
-		rm -f /jffs/scripts/users/rodney
+		rm -f /opt/scripts/users/rodney
 		curl -H "Authorization: Bearer <ACCESS_TOKEN>" -X POST "https://<BASE_URL>/api/smartapps/installations/<APP_ID>/away"
 	fi
 fi
 
 if [ "$Virignia" = Home ]
 then
-	if [ ! -f /jffs/scripts/users/alanna ]
+	if [ ! -f /opt/scripts/users/virginia ]
 	then
-		touch /jffs/scripts/users/virginia
+		touch /opt/scripts/users/virginia
 		curl -H "Authorization: Bearer <ACCESS_TOKEN>" -X POST "https://<BASE_URL>/api/smartapps/installations/<APP_ID>/home"
 	fi
 else
-	if [ -f /jffs/scripts/users/alanna ]
+	if [ -f /opt/scripts/users/virginia ]
 	then
-		rm -f /jffs/scripts/users/virginia
+		rm -f /opt/scripts/users/virginia
 		curl -H "Authorization: Bearer <ACCESS_TOKEN>" -X POST "https://<BASE_URL>/api/smartapps/installations/<APP_ID>/away"
 	fi
 fi
 
 if [ "$Sarah" = Home ]
 then
-	if [ ! -f /jffs/scripts/users/alanna ]
+	if [ ! -f /opt/scripts/users/sarah ]
 	then
-		touch /jffs/scripts/users/sarah
+		touch /opt/scripts/users/sarah
 		curl -H "Authorization: Bearer <ACCESS_TOKEN>" -X POST "https://<BASE_URL>/api/smartapps/installations/<APP_ID>/home"
 	fi
 else
-	if [ -f /jffs/scripts/users/alanna ]
+	if [ -f /opt/scripts/users/sarah ]
 	then
-		rm -f /jffs/scripts/users/sarah
+		rm -f /opt/scripts/users/sarah
 		curl -H "Authorization: Bearer <ACCESS_TOKEN>" -X POST "https://<BASE_URL>/api/smartapps/installations/<APP_ID>/away"
 	fi
 fi
