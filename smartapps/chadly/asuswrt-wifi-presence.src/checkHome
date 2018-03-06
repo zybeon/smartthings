@@ -1,0 +1,60 @@
+#!/bin/sh
+
+ServerURL="https://graph-na02-useast1.api.smartthings.com/api/smartapps/installations/“
+ServerURL2Home=”/Phone/home?access_token=“
+ServerURL2Away=”/Phone/away?access_token="
+User2App="AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA"
+User2Secret="BBBBBBBB-BBBB-BBBB-BBBB-BBBBBBBBBBBB"
+User1App="CCCCCCCC-CCCC-CCCC-CCCC-CCCCCCCCCCCC"
+User1rSecret="DDDDDDDD-DDDD-DDDD-DDDD-DDDDDDDDDDDD"
+User2Mac="XX:XX:XX:XX:XX:XX"
+User1Mac="YY:YY:YY:YY:YY:YY"
+User1Tag=/jffs/scripts/CheckUser/User1
+User2Tag=/jffs/scripts/CheckUser/User2
+
+User1=Away
+User2=Away
+
+macadresser=wl -i eth2 assoclist && wl -i eth1 assoclist && wl -i eth3 assoclist
+
+case “$macadresser” in
+$User1Mac)
+User1=Home
+;;
+esac
+
+case “$macadresser” in
+$User2Mac)
+User2=Home
+;;
+esac
+
+if [ “$User1” = Home ]
+then
+if [ ! -f $User1Tag ] || [ “$1” = “-f” ]
+then
+touch $User1Tag
+curl $ServerURL$User1App$ServerURL2Home$User1Secret -k
+fi
+else
+if [ -f $User1Tag ] || [ “$1” = “-f” ]
+then
+rm -f $User1Tag
+curl $ServerURL$User1App$ServerURL2Away$User1Secret -k
+fi
+fi
+
+if [ “$User2” = Home ]
+then
+if [ ! -f $User2Tag ] || [ “$1” = “-f” ]
+then
+touch $User2Tag
+curl $ServerURL$User2App$ServerURL2Home$User2Secret -k
+fi
+else
+if [ -f $User2Tag ] || [ “$1” = “-f” ]
+then
+rm -f $User2Tag
+curl $ServerURL$User2App$ServerURL2Away$User2Secret -k
+fi
+fi
